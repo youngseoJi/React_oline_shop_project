@@ -1,4 +1,32 @@
 * {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
+}
+.App {
+  text-align: center;
+}
+.jumbotron {
+  padding: 50px;
+  background-image: url(../src/img/background.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+.font-background {
+  border-radius: 5px;
+  background-color: rgba(9, 7, 7, 0.5);
+  color: white;
+  font-weight: 500;
+  /* opacity: 0.2;  글씨까지 연해져서 탈락*/
+}
+.font-background h1 {
+  color: red;
+  font-weight: 700;
+}
+.primary {
+  background-color: wheat;
+}
+
+.col-md-4 img {
+  width: 100%;
 }
