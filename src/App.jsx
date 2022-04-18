@@ -1,14 +1,11 @@
 import "./App.css";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Button,
-  ThemeProvider,
-} from "react-bootstrap";
+import { useState } from "react";
+import { Navbar, Nav, Container, NavDropdown, Button } from "react-bootstrap";
+import Data from "./data.js";
 
 function App() {
+  let [shoesData, setShoesData] = useState(Data);
+
   return (
     <>
       <div className="App">
@@ -19,8 +16,7 @@ function App() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown title="상품상세페이지" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
@@ -51,27 +47,32 @@ function App() {
             <Button variant="primary">Learn more</Button>
           </div>
         </div>
-        <ThemeProvider breakpoints={"md"}>
+        <div className="product-container">
           <div className="row">
-            <div className="col-md-4">
-              <img src="https://codingapple1.github.io/shop/shoes1.jpg"></img>
-              <h3>상품명</h3>
-              <p>상품설명, 가격</p>
-            </div>
-            <div className="col-md-4">
-              <img src="https://codingapple1.github.io/shop/shoes2.jpg"></img>
-              <h3>상품명</h3>
-              <p>상품설명, 가격</p>
-            </div>
-            <div className="col-md-4">
-              <img src="https://codingapple1.github.io/shop/shoes3.jpg"></img>
-              <h3>상품명</h3>
-              <p>상품설명, 가격</p>
-            </div>
+            {shoesData.map((shoes, i) => {
+              return (
+                <ShoesProducts shoesData={shoesData[i]} i={i}></ShoesProducts>
+              );
+            })}
           </div>
-        </ThemeProvider>
+        </div>
       </div>
     </>
   );
 }
 export default App;
+
+function ShoesProducts({ shoesData, i }) {
+  return (
+    <>
+      <div className="col-md-4">
+        <img
+          src={`https://codingapple1.github.io/shop/shoes${i + 1}.jpg`}
+        ></img>
+        <h3>{shoesData.title}</h3>
+        <p>{shoesData.content}</p>
+        <p>{shoesData.price}</p>
+      </div>
+    </>
+  );
+}

@@ -17,7 +17,6 @@
   background-color: rgba(9, 7, 7, 0.5);
   color: white;
   font-weight: 500;
-  /* opacity: 0.2;  글씨까지 연해져서 탈락*/
 }
 .font-background h1 {
   color: red;
@@ -27,6 +26,6 @@
   background-color: wheat;
 }
 
-.col-md-4 img {
-  width: 100%;
+.product-container img {
+  width: 50%;
 }
