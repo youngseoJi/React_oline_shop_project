@@ -77,7 +77,8 @@ function App() {
               </div>
             </div>
           </Route>
-          <Route path="/detail">
+          {/* url 파라미터 문법 : :id  :뒤에 작명 뒤에 어떤 문자든 적어도 된다. */}
+          <Route path="/detail/:id">
             <Detail shoes={shoesData} />
           </Route>
         </Switch>
