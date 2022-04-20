@@ -3,11 +3,14 @@ import { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown, Button } from "react-bootstrap";
 import Data from "./data.js";
 import Detail from "./Detail";
-
 import { Link, Route, Switch } from "react-router-dom";
+import axios from "axios";
+
 // import {Link, Route, Routes} from "react-router-dom";
 function App() {
   let [shoesData, setShoesData] = useState(Data);
+  let [loading, setLoading] = useState(false);
+  let [count, setCount] = useState(2);
 
   return (
     <>
@@ -72,12 +75,39 @@ function App() {
                   return (
                     <ShoesProducts
                       key={i}
-                      shoesData={shoesData[i]}
                       i={i}
+                      shoesData={shoesData[i]}
                     ></ShoesProducts>
                   );
                 })}
               </div>
+              {loading ? <h1>Loading...</h1> : null}
+              <Button
+                onClick={() => {
+                  setLoading(true);
+                  axios
+                    .get(
+                      `https://codingapple1.github.io/shop/data${count}.json`
+                    )
+                    // url에 요청한 data를 받아와 출력하기
+                    .then((data) => {
+                      setLoading(false);
+                      setCount(count + 1);
+                      console.log(data); // {data: Array(3), status: 200, statusText: '', headers: {…}, config: {…}, …}
+                      console.log(data.data); // data 만 뺴오기, [{…}, {…}, {…}]
+
+                      // 기존의 신발들 뒤에, axios로 받아온 데이터담기 [{…}, {…}, {…}]
+                      setShoesData([...shoesData, ...data.data]);
+                    })
+                    .catch(() => {
+                      setLoading(false);
+                      console.log(count);
+                      console.log("실패");
+                    });
+                }}
+              >
+                더 보기
+              </Button>
             </div>
           </Route>
           {/* url 파라미터 문법 : :id  :뒤에 작명 뒤에 어떤 문자든 적어도 된다. */}

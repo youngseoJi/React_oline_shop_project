@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "react-bootstrap";
 
+// 스타일드 컴포넌트
 let TitleBox = styled.div`
   padding: 20px;
 `;
 
 let Title = styled.h4`
   font-size: 25px;
-  color: ${(props) => props.색상};
 `;
 
 let Alert = styled.div`
@@ -24,18 +25,20 @@ let AlertText = styled.p`
   font-size: 16px;
   margin: 0px;
 `;
+
 // 컴포넌트가 mount or update되었을때 특정코드가 실행된다.
-function Detail({ shoes }) {
+function Detail({ shoes, stock, setStock }) {
   let [alert, setAlert] = useState(true);
   let [inputData, setInputData] = useState("");
 
   const handleInputValue = (e) => {
     setInputData(e.target.value);
   };
+
   useEffect(() => {
     let timer = setTimeout(() => {
       setAlert(false);
-    }, 2000);
+    }, 3000);
 
     console.log("안녕");
     return () => {
@@ -57,7 +60,7 @@ function Detail({ shoes }) {
   return (
     <div className="container">
       <TitleBox>
-        <Title 색상={"red"}>Detail</Title>
+        <Title>Detail</Title>
       </TitleBox>
       {inputData}
       <input onChange={handleInputValue} />
@@ -80,10 +83,10 @@ function Detail({ shoes }) {
           <h4 className="pt-5">{findShoes.title}</h4>
           <p>{findShoes.content}</p>
           <p>{findShoes.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
-          <button className="btn btn-danger">뒤로가기</button>
-          <button
-            className="btn btn-danger"
+
+          <Button style={{ margin: "10px" }}>주문하기</Button>
+          <Button
+            색상={"red"}
             onClick={() => {
               // 뒤로가기 기능, 이전에 방문했던 사이트로 돌아간다.
               history.goBack();
@@ -91,7 +94,7 @@ function Detail({ shoes }) {
             }}
           >
             뒤로가기
-          </button>
+          </Button>
         </div>
       </div>
     </div>
