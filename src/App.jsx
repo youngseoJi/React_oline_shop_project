@@ -18,12 +18,14 @@ function App() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link>
-                  {/* route 한 경로와 Link 로 이어줌 */}
-                  <Link to="/">Home</Link>
+                {/* route 한 경로와 Link 로 이어줌 */}
+                {/* <Link to="/">Home</Link> */}
+                {/* <Link to="/detail">Detail </Link> */}
+                <Nav.Link as={Link} to="/">
+                  Home
                 </Nav.Link>
-                <Nav.Link>
-                  <Link to="/detail">Detail </Link>
+                <Nav.Link as={Link} to="/detail">
+                  Detail
                 </Nav.Link>
                 <NavDropdown title="상품상세페이지" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -69,6 +71,7 @@ function App() {
                 {shoesData.map((shoes, i) => {
                   return (
                     <ShoesProducts
+                      key={i}
                       shoesData={shoesData[i]}
                       i={i}
                     ></ShoesProducts>
