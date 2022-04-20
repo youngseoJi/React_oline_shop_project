@@ -19,13 +19,13 @@ function Detail({ shoes }) {
             src={`https://codingapple1.github.io/shop/shoes${
               findShoes.id + 1
             }.jpg`}
-            width="100%"
-          />
+          ></img>
         </div>
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{findShoes.title}</h4>
           <p>{findShoes.content}</p>
           <p>{findShoes.price}원</p>
+          <button className="btn btn-danger">주문하기</button>
           <button className="btn btn-danger">주문하기</button>
           <button
             className="btn btn-danger"
